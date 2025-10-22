@@ -16,23 +16,28 @@
         <h2>DailyBazar Admin</h2>
       </div>
 
-      <form id="loginForm">
+      <form id="loginForm" autocomplete="off" novalidate>
         <div class="input-group">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required>
+          <input type="email" id="email" placeholder="admin@dailybazar.com" required>
         </div>
 
         <div class="input-group">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
+          <div class="pw-wrapper">
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <button type="button" id="togglePw" class="eye" aria-label="toggle password"></button>
+          </div>
         </div>
 
         <button type="submit" class="btn"><i data-lucide="log-in"></i> Login</button>
       </form>
 
-      <p class="note">Authorized access only 🚫</p>
+      <p class="note">Authorized access only</p>
     </div>
   </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
 
   <script src="index.js"></script>
   <script>lucide.createIcons();</script>

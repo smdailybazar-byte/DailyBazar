@@ -3,41 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DailyBazar - Data Manager</title>
+  <title>DailyBazar — Data Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="DataManager.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="app">
-    <!-- ===== Sidebar ===== -->
+    <!-- ==== Sidebar ==== -->
     <aside class="sidebar">
       <div class="brand">
-        <i data-lucide="shopping-bag"></i>
+        <i data-lucide="shopping-cart"></i>
         <span>DailyBazar</span>
       </div>
-      <nav class="nav">
-        <a href="../Dashboard/Dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <nav>
+        <a href="../Dashboard/Dashboard.html"><i data-lucide="bar-chart-2"></i> Dashboard</a>
         <a href="#" class="active"><i data-lucide="database"></i> Data Manager</a>
       </nav>
-      <div class="sb-bottom">© 2025 DailyBazar</div>
+      <footer>© 2025 DailyBazar</footer>
     </aside>
 
-    <!-- ===== Content ===== -->
+    <!-- ==== Main Content ==== -->
     <main class="content">
       <header class="topbar">
         <h1><i data-lucide="database"></i> Data Manager</h1>
-        <div class="top-actions">
-          <button class="btn"><i data-lucide="upload"></i> Import CSV</button>
-          <button class="btn ghost"><i data-lucide="download"></i> Export Data</button>
+        <div class="actions">
+          <button id="importCsv" class="btn"><i data-lucide="upload"></i> Import CSV</button>
+          <button id="exportCsv" class="btn ghost"><i data-lucide="download"></i> Export CSV</button>
+          <button id="backupData" class="btn"><i data-lucide="cloud-upload"></i> Backup</button>
         </div>
       </header>
 
-      <!-- ===== Form Panel ===== -->
+      <!-- ==== Add Record ==== -->
       <section class="form-panel">
         <h2><i data-lucide="plus-circle"></i> Add New Record</h2>
         <form id="recordForm">
           <input type="text" id="itemName" placeholder="Item Name" required />
-          <input type="number" id="price" placeholder="Price" required />
+          <input type="number" id="price" placeholder="Price (৳)" required />
           <select id="category">
             <option value="">Select Category</option>
             <option>Grocery</option>
@@ -55,20 +57,22 @@
         </form>
       </section>
 
-      <!-- ===== Table Panel ===== -->
+      <!-- ==== Table Section ==== -->
       <section class="table-panel">
         <div class="table-top">
           <div class="tbl-filters">
-            <input type="text" id="searchInput" placeholder="Search records..." />
+            <input type="text" id="searchInput" placeholder="Search..." />
             <input type="date" id="filterStart" />
             <input type="date" id="filterEnd" />
             <select id="sortOption">
               <option value="date">Sort by Date</option>
               <option value="price">Sort by Price</option>
             </select>
-            <button class="btn btn-sm" id="clearFilter"><i data-lucide="filter-x"></i> Clear</button>
+            <button id="clearFilter" class="btn ghost"><i data-lucide="x-circle"></i> Clear</button>
           </div>
-          <div class="record-count">Total Records: <span id="recordCount">0</span></div>
+          <div class="record-count">
+            <span>Records: <strong id="recordCount">0</strong></span>
+          </div>
         </div>
 
         <div id="tableWrap">
@@ -86,14 +90,13 @@
             <tbody></tbody>
           </table>
         </div>
-        <div class="table-footer">
-          Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> records
-        </div>
       </section>
     </main>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="toast"></div>
+
+  <audio id="saveSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
 
   <script src="DataManager.js"></script>
   <script>lucide.createIcons();</script>
