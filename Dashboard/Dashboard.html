@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DailyBazar — Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="Dashboard.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i data-lucide="shopping-cart"></i>
+        <span>DailyBazar</span>
+      </div>
+      <nav>
+        <a href="Dashboard.html" class="active">
+          <i data-lucide="bar-chart-2"></i> Dashboard
+        </a>
+        <a href="../DataManager/DataManager.html">
+          <i data-lucide="database"></i> Data Manager
+        </a>
+      </nav>
+      <footer>© 2025 DailyBazar</footer>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main class="content">
+      <header class="topbar">
+        <h1>📊 Dashboard Overview</h1>
+        <div class="actions">
+          <button id="exportPdf" class="btn"><i data-lucide="file-text"></i> Export PDF</button>
+          <div id="syncDot" class="sync-dot" title="Sync status"></div>
+          <span id="lastUpdated" class="last-updated">Last Updated: —</span>
+        </div>
+      </header>
+
+      <section class="filters">
+        <label>From <input id="startDate" type="date"></label>
+        <label>To <input id="endDate" type="date"></label>
+        <button id="applyFilter" class="btn"><i data-lucide="filter"></i> Apply</button>
+        <button id="clearFilter" class="btn ghost"><i data-lucide="x-circle"></i> Clear</button>
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <p class="title">Total Records</p>
+          <h2 id="totalRecords">—</h2>
+        </div>
+        <div class="card">
+          <p class="title">Total Spend</p>
+          <h2 id="totalSpend">—</h2>
+        </div>
+        <div class="card">
+          <p class="title">Daily Average</p>
+          <h2 id="dailyAvg">—</h2>
+        </div>
+        <div class="card">
+          <p class="title">Shops Count</p>
+          <h2 id="shopCount">—</h2>
+        </div>
+      </section>
+
+      <section class="chart-panel">
+        <div class="chart-header">
+          <h3>Spending Overview</h3>
+          <select id="chartType">
+            <option value="bar">Bar</option>
+            <option value="line">Line</option>
+            <option value="pie">Pie</option>
+          </select>
+        </div>
+        <canvas id="spendChart"></canvas>
+      </section>
+
+      <section class="recent">
+        <h3>Recent Entries</h3>
+        <div id="recentTable">Loading...</div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <audio id="saveSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="Dashboard.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

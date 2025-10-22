@@ -1,0 +1,212 @@
+:root {
+  --accent: #2563eb;
+  --accent-light: #3b82f6;
+  --danger: #ef4444;
+  --bg: #f6f8fc;
+  --glass: rgba(255, 255, 255, 0.9);
+  --border: #e2e8f0;
+  --muted: #64748b;
+  --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(180deg, #f8fbff, #f3f6fc);
+  color: #0f172a;
+}
+
+.app { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 230px;
+  background: linear-gradient(180deg, var(--accent), #1d4ed8);
+  color: #fff;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.nav { display: flex; flex-direction: column; gap: 6px; }
+.nav a {
+  display: flex; align-items: center; gap: 8px;
+  color: #fff; text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+.nav a.active, .nav a:hover {
+  background: rgba(255,255,255,0.12);
+}
+.sb-bottom {
+  margin-top: auto;
+  font-size: 13px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 26px;
+  margin-left: 230px;
+  overflow-y: auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  background: var(--glass);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  z-index: 20;
+}
+
+.topbar h1 {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 22px;
+  color: var(--accent);
+}
+
+.top-actions { display: flex; gap: 10px; }
+
+/* Buttons */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+.btn:hover { background: var(--accent-light); transform: translateY(-1px); }
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(37,99,235,0.25);
+  color: var(--accent);
+}
+.btn.ghost:hover { background: rgba(37,99,235,0.08); }
+
+/* Form Panel */
+.form-panel {
+  background: var(--glass);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-panel h2 {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--accent);
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+form input, form select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  flex: 1;
+  min-width: 160px;
+}
+
+.form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Table Panel */
+.table-panel {
+  background: var(--glass);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.table-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tbl-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#tableWrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th { background: #f8fafc; font-weight: 600; color: #475569; }
+
+tr:hover td { background: #f1f5f9; }
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+@media (max-width:900px) {
+  .sidebar { display: none; }
+  .content { margin-left: 0; padding: 16px; }
+  form input, form select { flex: 100%; }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DailyBazar - Data Manager</title>
+  <link rel="stylesheet" href="DataManager.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i data-lucide="shopping-bag"></i>
+        <span>DailyBazar</span>
+      </div>
+      <nav class="nav">
+        <a href="../Dashboard/Dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="#" class="active"><i data-lucide="database"></i> Data Manager</a>
+      </nav>
+      <div class="sb-bottom">© 2025 DailyBazar</div>
+    </aside>
+
+    <!-- ===== Content ===== -->
+    <main class="content">
+      <header class="topbar">
+        <h1><i data-lucide="database"></i> Data Manager</h1>
+        <div class="top-actions">
+          <button class="btn"><i data-lucide="upload"></i> Import CSV</button>
+          <button class="btn ghost"><i data-lucide="download"></i> Export Data</button>
+        </div>
+      </header>
+
+      <!-- ===== Form Panel ===== -->
+      <section class="form-panel">
+        <h2><i data-lucide="plus-circle"></i> Add New Record</h2>
+        <form id="recordForm">
+          <input type="text" id="itemName" placeholder="Item Name" required />
+          <input type="number" id="price" placeholder="Price" required />
+          <select id="category">
+            <option value="">Select Category</option>
+            <option>Grocery</option>
+            <option>Vegetables</option>
+            <option>Fruits</option>
+            <option>Utilities</option>
+            <option>Others</option>
+          </select>
+          <input type="date" id="date" required />
+          <input type="text" id="addedBy" placeholder="Added By" required />
+          <div class="form-actions">
+            <button type="submit" class="btn"><i data-lucide="save"></i> Save</button>
+            <button type="reset" class="btn ghost"><i data-lucide="refresh-ccw"></i> Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== Table Panel ===== -->
+      <section class="table-panel">
+        <div class="table-top">
+          <div class="tbl-filters">
+            <input type="text" id="searchInput" placeholder="Search records..." />
+            <input type="date" id="filterStart" />
+            <input type="date" id="filterEnd" />
+            <select id="sortOption">
+              <option value="date">Sort by Date</option>
+              <option value="price">Sort by Price</option>
+            </select>
+            <button class="btn btn-sm" id="clearFilter"><i data-lucide="filter-x"></i> Clear</button>
+          </div>
+          <div class="record-count">Total Records: <span id="recordCount">0</span></div>
+        </div>
+
+        <div id="tableWrap">
+          <table id="recordsTable">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Added By</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> records
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="DataManager.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
